@@ -1,0 +1,88 @@
+name: twp-egift-cards
+region: nyc1
+
+services:
+  - name: web
+    github:
+      repo: thewaterproject/twp-egift-cards
+      branch: main
+      deploy_on_push: true
+    build_command: |
+      composer install --no-dev --optimize-autoloader
+      npm ci
+      npm run build
+    environment_slug: php
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8080
+    routes:
+      - path: /
+    envs:
+      - key: APP_NAME
+        value: TWP eGift Cards
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: base64:LInFQRA4WF3E5B6vTMe33SmXzMyNRc5iyCA4fA3RWQM=
+        type: SECRET
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_URL
+        value: ${APP_URL}
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: ${db.HOSTNAME}
+      - key: DB_PORT
+        value: ${db.PORT}
+      - key: DB_DATABASE
+        value: ${db.DATABASE}
+      - key: DB_USERNAME
+        value: ${db.USERNAME}
+      - key: DB_PASSWORD
+        value: ${db.PASSWORD}
+        type: SECRET
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_LEVEL
+        value: error
+
+databases:
+  - name: db
+    engine: MYSQL
+    version: "8"
+    production: true
+    cluster_name: twp-egift-cards-db
+
+jobs:
+  - name: migrate
+    kind: PRE_DEPLOY
+    github:
+      repo: thewaterproject/twp-egift-cards
+      branch: main
+      deploy_on_push: true
+    build_command: composer install --no-dev --optimize-autoloader
+    run_command: php artisan migrate --force
+    environment_slug: php
+    envs:
+      - key: APP_KEY
+        value: base64:LInFQRA4WF3E5B6vTMe33SmXzMyNRc5iyCA4fA3RWQM=
+        type: SECRET
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: ${db.HOSTNAME}
+      - key: DB_PORT
+        value: ${db.PORT}
+      - key: DB_DATABASE
+        value: ${db.DATABASE}
+      - key: DB_USERNAME
+        value: ${db.USERNAME}
+      - key: DB_PASSWORD
+        value: ${db.PASSWORD}
+        type: SECRET
+

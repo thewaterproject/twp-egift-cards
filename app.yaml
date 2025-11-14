@@ -93,5 +93,5 @@ databases:
     version: "8"
     production: true
     cluster_name: twp-egift-cards-db
-    db_name: laravel
-    db_user: laravel
+    db_name: defaultdb
+    db_user: doadmin

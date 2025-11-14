@@ -12,7 +12,7 @@ services:
       repo: thewaterproject/twp-egift-cards
       branch: main
       deploy_on_push: true
-    build_command: composer install --no-dev --optimize-autoloader && npm ci && npm run build && php artisan migrate && php artisan storage:link || true
+    build_command: composer install --no-dev --optimize-autoloader && npm ci && npm run build && php artisan storage:link || true
     run_command: ./start.sh
     environment_slug: php
     instance_count: 1
@@ -86,3 +86,12 @@ services:
         value: error
         scope: RUN_TIME
         type: GENERAL
+
+databases:
+  - name: db
+    engine: MYSQL
+    version: "8"
+    production: true
+    cluster_name: twp-egift-cards-db
+    db_name: laravel
+    db_user: laravel

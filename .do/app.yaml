@@ -1,20 +1,11 @@
 name: twp-egift-cards
-region: nyc1
-
 services:
-  - name: web
-    github:
-      repo: thewaterproject/twp-egift-cards
-      branch: main
-      deploy_on_push: true
-    build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build
-    run_command: heroku-php-apache2 public/
-    environment_slug: php
-    http_port: 8080
-    envs:
-      - key: APP_NAME
-        value: TWP eGift Cards
-      - key: APP_ENV
-        value: production
-      - key: APP_KEY
-        value: base64:LInFQRA4WF3E5B6vTMe33SmXzMyNRc5iyCA4fA3RWQM=
+- environment_slug: php
+  name: web
+  build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build
+  run_command: heroku-php-apache2 public/
+  envs:
+  - key: APP_KEY
+    value: base64:UdAH2B63rlotjrkSSsj3Hppy4gbfr+OeHvtSdF9r9q8=
+  http_port: 8080
+  source_dir: /

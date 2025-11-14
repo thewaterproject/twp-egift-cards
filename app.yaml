@@ -5,6 +5,7 @@ region: nyc1
 # 1. Connect your GitHub account to DigitalOcean in the App Platform dashboard
 # 2. Update the GitHub repo path below with your actual repository
 # 3. Generate APP_KEY using: php artisan key:generate --show (then base64 encode it)
+# 4. Set the APP_DOMAIN environment variable to the domain of the app
 
 services:
   - name: laravel-app

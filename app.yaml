@@ -12,7 +12,7 @@ services:
       repo: thewaterproject/twp-egift-cards
       branch: main
       deploy_on_push: true
-    build_command: composer install --no-dev --optimize-autoloader && npm ci && npm run build && php artisan storage:link || true
+    build_command: composer install --no-dev --optimize-autoloader && npm ci && npm run build && php artisan migrate && php artisan storage:link || true
     run_command: ./start.sh
     environment_slug: php
     instance_count: 1

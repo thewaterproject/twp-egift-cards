@@ -13,7 +13,7 @@ services:
       branch: main
       deploy_on_push: true
     build_command: composer install --no-dev --optimize-autoloader && npm ci && npm run build && php artisan storage:link || true
-    run_command: php artisan serve --host=0.0.0.0 --port=8080
+    run_command: ./start.sh
     environment_slug: php
     instance_count: 1
     instance_size_slug: basic-xxs
@@ -86,56 +86,6 @@ services:
         value: error
         scope: RUN_TIME
         type: GENERAL
-
-jobs:
-  - name: migrate
-    github:
-      repo: thewaterproject/twp-egift-cards
-      branch: main
-      deploy_on_push: true
-    build_command: composer install --no-dev --optimize-autoloader
-    run_command: php artisan migrate --force
-    environment_slug: php
-    instance_count: 1
-    instance_size_slug: basic-xxs
-    kind: PRE_DEPLOY
-    envs:
-      - key: APP_NAME
-        value: TWP eGift Cards
-        scope: RUN_TIME
-        type: GENERAL
-      - key: APP_ENV
-        value: production
-        scope: RUN_TIME
-        type: GENERAL
-      - key: APP_KEY
-        value: base64:LInFQRA4WF3E5B6vTMe33SmXzMyNRc5iyCA4fA3RWQM=
-        scope: RUN_TIME
-        type: SECRET
-      - key: DB_CONNECTION
-        value: mysql
-        scope: RUN_TIME
-        type: GENERAL
-      - key: DB_HOST
-        value: ${db.HOSTNAME}
-        scope: RUN_TIME
-        type: GENERAL
-      - key: DB_PORT
-        value: ${db.PORT}
-        scope: RUN_TIME
-        type: GENERAL
-      - key: DB_DATABASE
-        value: ${db.DATABASE}
-        scope: RUN_TIME
-        type: GENERAL
-      - key: DB_USERNAME
-        value: ${db.USERNAME}
-        scope: RUN_TIME
-        type: GENERAL
-      - key: DB_PASSWORD
-        value: ${db.PASSWORD}
-        scope: RUN_TIME
-        type: SECRET
 
 databases:
   - name: db

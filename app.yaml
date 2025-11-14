@@ -86,13 +86,3 @@ services:
         value: error
         scope: RUN_TIME
         type: GENERAL
-
-databases:
-  - name: db
-    engine: MYSQL
-    version: "8"
-    production: true
-    cluster_name: twp-egift-cards-db
-    db_name: laravel
-    db_user: laravel
-

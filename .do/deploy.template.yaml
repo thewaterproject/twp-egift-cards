@@ -25,20 +25,4 @@ spec:
   - name: post-deploy
     kind: POST_DEPLOY
     environment_slug: php
-    git:
-      branch: main
-      repo_clone_url: https://github.com/thewaterproject/twp-egift-cards.git
-    envs:
-    - key: APP_KEY
-      value: "base64:UdAH2B63rlotjrkSSsj3Hppy4gbfr+OeHvtSdF9r9q8="
-    - key: DB_HOST
-      value: ${db.HOSTNAME}
-    - key: DB_PORT
-      value: ${db.PORT}
-    - key: DB_DATABASE
-      value: ${db.DATABASE}
-    - key: DB_USERNAME
-      value: ${db.USERNAME}
-    - key: DB_PASSWORD
-      value: ${db.PASSWORD}
     run_command: php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache

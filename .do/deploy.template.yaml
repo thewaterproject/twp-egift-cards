@@ -5,6 +5,8 @@ spec:
     git:
       branch: main
       repo_clone_url: https://github.com/thewaterproject/twp-egift-cards.git
+    run_command: heroku-php-apache2 public/
+    build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build && php artisan migrate && php artisan storage:link || true
     envs:
     - key: APP_KEY
       value: "base64:UdAH2B63rlotjrkSSsj3Hppy4gbfr+OeHvtSdF9r9q8="
@@ -20,6 +22,3 @@ spec:
       value: laravel
     - key: DB_PASSWORD
       value: root
-    name: twp-egift-cards
-    run_command: heroku-php-apache2 public/
-    build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build && php artisan migrate && php artisan storage:link || true

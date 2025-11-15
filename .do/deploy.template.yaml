@@ -22,8 +22,3 @@ spec:
     name: twp-egift-cards
     run_command: heroku-php-apache2 public/
     build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build && php artisan storage:link || true
-  jobs:
-  - name: post-deploy
-    kind: POST_DEPLOY
-    environment_slug: php
-    run_command: php artisan migrate --force && php artisan optimize:clear

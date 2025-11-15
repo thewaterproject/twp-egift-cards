@@ -8,6 +8,18 @@ spec:
     envs:
     - key: APP_KEY
       value: "base64:UdAH2B63rlotjrkSSsj3Hppy4gbfr+OeHvtSdF9r9q8="
+    - key: DB_CONNECTION
+      value: mysql
+    - key: DB_HOST
+      value: mysql
+    - key: DB_PORT
+      value: 25060
+    - key: DB_DATABASE
+      value: laravel
+    - key: DB_USERNAME
+      value: laravel
+    - key: DB_PASSWORD
+      value: root
     name: twp-egift-cards
     run_command: heroku-php-apache2 public/
     build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build && php artisan migrate && php artisan storage:link || true

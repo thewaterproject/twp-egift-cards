@@ -1,4 +1,4 @@
-name: twp-egift-cards
+name: webapp
 services:
 - environment_slug: php
   name: web

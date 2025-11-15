@@ -17,7 +17,7 @@ spec:
     - key: DB_USERNAME
       value: ${db.USERNAME}
     - key: DB_PASSWORD
-      value: ${db.PASSWORD}  
+      value: ${db.PASSWORD}
     name: twp-egift-cards
     run_command: heroku-php-apache2 public/
     build_command: composer install --no-interaction --prefer-dist --optimize-autoloader && npm install && npm run build && php artisan migrate && php artisan storage:link || true

@@ -4,7 +4,7 @@ services:
   git:
     branch: main
     repo_clone_url: https://github.com/thewaterproject/twp-egift-cards.git
-  source_dir: /src
+  source_dir: /
   envs:
   - key: APP_NAME
     value: "TWP eGift Cards"
@@ -56,7 +56,7 @@ jobs:
 - name: post-deploy
   kind: POST_DEPLOY
   environment_slug: php
-  source_dir: /src
+  source_dir: /
   envs:
   - key: APP_NAME
     value: "TWP eGift Cards"
